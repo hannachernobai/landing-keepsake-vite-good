@@ -1,0 +1,22 @@
+section.section(aria-labelledby='clients-title')
+  .container
+    .section__head
+      +section-title('clients-title')
+        | #{ content.clients.title }
+      p= content.clients.text
+    ul.clients
+      each client in clients
+        li.clients__logo(class=`clients__logo--${client.id}`)= client.name
+    figure.testimonial
+      span.testimonial__mark(aria-hidden='true') “
+      blockquote
+        p.testimonial__text= content.testimonial.quote
+      figcaption.testimonial__author
+        span.testimonial__avatar(aria-hidden='true')= content.testimonial.initials
+        span.testimonial__who
+          span.testimonial__name= content.testimonial.name
+          span.testimonial__role= content.testimonial.role
+        span.testimonial__dots(aria-hidden='true')
+          //- індикатор слайдера: перша крапка активна
+          each _, i in Array.from({ length: content.testimonial.slides })
+            span.testimonial__dot(class={ 'testimonial__dot--active': i === 0 })

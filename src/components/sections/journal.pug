@@ -1,0 +1,21 @@
+section#journal.section.journal(aria-labelledby='journal-title')
+  .container
+    .section__head
+      +section-title('journal-title')
+        | #{ content.journal.title }
+      p= content.journal.text
+    .journal__posts
+      each post in posts
+        article.post
+          .post__thumb
+            +picture({ ...postImage, name: post.image, alt: '', cls: 'post__img' })
+          .post__body
+            p.post__meta
+              time(datetime=post.date)= post.dateLabel
+              |
+              | / #{ post.category }
+            h3.post__title= post.title
+            p= post.text
+            a.post__more(href='#')
+              | Read more
+              span.visually-hidden about #{ post.title }

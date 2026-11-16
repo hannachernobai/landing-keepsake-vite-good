@@ -1,0 +1,7 @@
+section.hero(aria-labelledby='hero-title')
+  .container.hero__inner
+    h1#hero-title.hero__title= content.hero.title
+    p= content.hero.text
+    .hero__actions
+      +btn('See our works', '#works')
+      +btn('Get in touch', '#contact', 'secondary')

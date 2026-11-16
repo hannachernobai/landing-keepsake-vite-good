@@ -1,0 +1,31 @@
+extends ../layouts/main
+
+block title
+  title #{ site.title }
+
+block append meta
+  //- append: додаємо до блоку макета, не замінюючи charset і viewport
+  include ../includes/meta
+
+block prepend styles
+  //- prepend: preload таблиці шрифтів ще до main.scss
+  link(rel='preload', as='style', href=site.fontsUrl)
+
+block append styles
+  //- append: самі шрифти підключаємо після основних стилів
+  link(rel='stylesheet', href=site.fontsUrl)
+
+block header
+  include ../components/header
+
+block content
+  include ../components/sections/hero
+  include ../components/sections/works
+  include ../components/sections/cta
+  include ../components/sections/services
+  include ../components/sections/stats
+  include ../components/sections/clients
+  include ../components/sections/journal
+
+block footer
+  include ../components/footer

@@ -1,0 +1,17 @@
+footer#contact.footer
+  .container
+    .footer__top
+      .footer__links
+        each column in footerColumns
+          nav.footer__col(aria-labelledby=`footer-${column.id}`)
+            h2.footer__title(id=`footer-${column.id}`)= column.title
+            ul.footer__list
+              each link in column.links
+                li
+                  a.footer__link(href=link.href)= link.text
+
+      include newsletter
+
+    .footer__bottom
+      p.footer__copy © #{ site.year } Keepsake. All rights reserved.
+      +socials(socialLinks, 'outline').footer__socials

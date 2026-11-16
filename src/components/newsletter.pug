@@ -1,0 +1,25 @@
+.newsletter
+  h2.footer__title Newsletter
+  form.newsletter__form(action='#subscribed', method='get')
+    p.newsletter__text= content.newsletter.text
+    .newsletter__field
+      .newsletter__row
+        label.visually-hidden(for='email') Your email address
+        input#email.newsletter__input(
+          type='email',
+          name='email',
+          placeholder='Your email address',
+          required,
+          autocomplete='email',
+          aria-describedby='email-error'
+        )
+        button.btn.btn--primary(type='submit') Subscribe
+      p#email-error.newsletter__error Please enter a valid email address.
+    label.newsletter__consent
+      input.newsletter__checkbox(type='checkbox', name='consent', required)
+      span I agree to the privacy policy
+  #subscribed.newsletter__success(role='status', tabindex='-1')
+    span.newsletter__success-icon(aria-hidden='true')
+      +icon('check')
+    p.newsletter__success-title You’re in! Check your inbox to confirm.
+    p.newsletter__success-note One email a month. No spam, unsubscribe anytime.

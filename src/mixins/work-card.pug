@@ -1,0 +1,13 @@
+//- +work-card(work) — картка портфоліо. Необов'язкове поле work.showFrom дає модифікатор --from-<bp>
+mixin work-card(work)
+  - const modifier = work.showFrom ? `work-card--from-${work.showFrom}` : false;
+  - const category = categories.find((c) => c.id === work.category);
+  article.work-card(class=modifier, data-category=work.category)
+    a.work-card__link(href='#')
+      +picture({ ...workImage, name: work.image, alt: work.alt, cls: 'work-card__img' })
+      .work-card__overlay
+        span.work-card__plus(aria-hidden='true')
+          +icon('plus')
+        h3.work-card__title= work.title
+        span.work-card__line(aria-hidden='true')
+        span.work-card__cat= category.label

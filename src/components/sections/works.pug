@@ -1,0 +1,26 @@
+section#works.section.works(aria-labelledby='works-title')
+  .container
+    //- Радіокнопки й чекбокс мають стояти ПЕРЕД головою та сіткою: фільтр працює через :checked ~
+    each category, i in categories
+      input.works__filter(
+        type='radio',
+        name='filter',
+        id=`filter-${category.id}`,
+        value=category.id,
+        checked=i === 0
+      )
+    input#more.works__more(type='checkbox')
+
+    .works__head
+      +section-title('works-title').works__title
+        | #{ content.works.title }
+      .chips
+        each category in categories
+          label.chip(for=`filter-${category.id}`, data-filter=category.id)= category.label
+
+    .works__grid
+      each work in works
+        +work-card(work)
+
+    .works__load
+      label.btn.btn--secondary.works__load-btn(for='more') Load more works

@@ -1,0 +1,33 @@
+header.header
+  .container.header__inner
+    a.logo(href='#top', aria-label='Keepsake — home')
+      span.logo__mark(aria-hidden='true') K
+      span.logo__text(aria-hidden='true') eepsake
+
+    nav.nav(aria-label='Main')
+      +nav-list(navItems, 'nav')
+      a.fav-btn(href='#', aria-label='Favourites')
+        +icon('heart')
+
+    button.burger(
+      type='button',
+      popovertarget='site-menu',
+      aria-expanded='false',
+      aria-controls='site-menu',
+      aria-label='Menu'
+    )
+      +icon('burger').burger__open
+      +icon('close').burger__close
+
+  #site-menu.mobile-menu(popover)
+    nav(aria-label='Mobile')
+      +nav-list(navItems, 'mobile-menu')
+    .mobile-menu__actions
+      +btn('Contact us', '#contact')
+      +btn('Favourites', '#', 'secondary')
+        +icon('heart', 16)
+    .mobile-menu__contacts
+      p.mobile-menu__label Say hello
+      a.mobile-menu__contact(href=`mailto:${site.email}`)= site.email
+      a.mobile-menu__contact(href=`tel:${site.phone}`)= site.phoneLabel
+      +socials(socialLinks).mobile-menu__socials

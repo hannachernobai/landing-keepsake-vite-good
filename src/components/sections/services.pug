@@ -1,0 +1,13 @@
+section#about.section(aria-labelledby='about-title')
+  .container
+    .section__head
+      +section-title('about-title')
+        | #{ content.about.title }
+      p= content.about.text
+    ul.services
+      each service in services
+        li.service
+          span.service__icon(aria-hidden='true')
+            +icon(service.icon)
+          h3.service__title= service.title
+          p= service.text
