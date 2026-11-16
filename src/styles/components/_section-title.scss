@@ -1,0 +1,18 @@
+@use '../abstracts' as *;
+
+.section-title {
+  display: flex;
+  gap: var(--space-12);
+  align-items: center;
+  color: var(--color-text-dark);
+
+  @include text(400, rem(18), 27px, var(--font-heading));
+  @include uppercase(1.5px);
+
+  &::after {
+    width: 16px;
+    height: 2px;
+    content: '';
+    background: var(--color-accent);
+  }
+}

@@ -1,0 +1,108 @@
+@use '../abstracts' as *;
+
+.works {
+  // Радіокнопки фільтра й чекбокс «Load more» візуально приховані
+  &__filter,
+  &__more {
+    @include visually-hidden;
+  }
+
+  &__head {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-20);
+    margin-bottom: var(--space-20);
+  }
+
+  &__grid {
+    --cols: 1;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--grid-gap);
+    align-items: flex-start;
+  }
+
+  &__load {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--space-24);
+  }
+
+  &__load-btn {
+    width: 100%;
+  }
+
+  // «Load more» показує приховані картки
+  &__more:checked ~ &__grid .work-card {
+    display: block;
+  }
+
+  // Кнопка зникає після розкриття та при активному фільтрі
+  &__filter:not([value='all']):checked ~ &__load,
+  &__more:checked ~ &__load {
+    display: none;
+  }
+
+  &__more:focus-visible ~ &__load &__load-btn {
+    @include focus-ring;
+  }
+
+  // Активний чипс, фокус і фільтрація карток — для кожного значення з $work-filters
+  @each $filter in $work-filters {
+    &__filter[value='#{$filter}']:checked ~ &__head .chip[data-filter='#{$filter}'] {
+      color: var(--color-white);
+      background: var(--color-accent);
+      border-color: var(--color-accent);
+    }
+
+    &__filter[value='#{$filter}']:focus-visible ~ &__head .chip[data-filter='#{$filter}'] {
+      @include focus-ring;
+    }
+
+    @if $filter != 'all' {
+      &__filter[value='#{$filter}']:checked ~ &__grid .work-card {
+        &:not([data-category~='#{$filter}']) {
+          display: none;
+        }
+
+        &[data-category~='#{$filter}'] {
+          display: block;
+        }
+      }
+    }
+  }
+
+  @include mq(md) {
+    &__head {
+      flex-flow: row wrap;
+      gap: var(--space-20);
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-24);
+    }
+
+    &__title {
+      flex: none;
+      white-space: nowrap;
+    }
+
+    &__grid {
+      --cols: 2;
+    }
+
+    &__load {
+      margin-top: var(--space-28);
+    }
+
+    &__load-btn {
+      width: auto;
+    }
+  }
+
+  @include mq(lg) {
+    &__grid {
+      --cols: 3;
+    }
+  }
+}

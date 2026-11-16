@@ -1,0 +1,92 @@
+@use '../abstracts' as *;
+
+.work-card {
+  position: relative;
+  display: block;
+  flex: 0 0 calc((100% - (var(--cols) - 1) * var(--grid-gap)) / var(--cols));
+  min-width: 0;
+  overflow: hidden;
+  background: var(--color-bg-light);
+  aspect-ratio: var(--card-ratio);
+
+  &__link,
+  &__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__img {
+    object-fit: cover;
+  }
+
+  &__link {
+    position: relative;
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    flex-direction: column;
+    gap: var(--space-10);
+    color: var(--color-white);
+    text-align: center;
+    background: var(--color-overlay);
+    opacity: 0;
+
+    @include flex-center;
+    @include transition(opacity);
+  }
+
+  // Ховер і фокус з клавіатури дають однаковий стан
+  &__link:hover &__overlay,
+  &:focus-within &__overlay {
+    opacity: 1;
+  }
+
+  &__plus {
+    width: 44px;
+    height: 44px;
+    color: var(--color-white);
+    background: var(--color-teal);
+    border-radius: 50%;
+
+    @include flex-center;
+  }
+
+  &__title {
+    letter-spacing: 0.5px;
+
+    @include text(400, rem(17), 25px, var(--font-heading));
+  }
+
+  &__line {
+    width: 30px;
+    height: 2px;
+    background: var(--color-accent);
+  }
+
+  &__cat {
+    color: var(--color-teal);
+
+    @include text(400, var(--fs-ui), 18px, var(--font-heading));
+    @include uppercase;
+  }
+
+  // Картки, приховані на малих екранах (показуються «Load more»)
+  &--from-md {
+    display: none;
+
+    @include mq(md) {
+      display: block;
+    }
+  }
+
+  &--from-lg {
+    display: none;
+
+    @include mq(lg) {
+      display: block;
+    }
+  }
+}

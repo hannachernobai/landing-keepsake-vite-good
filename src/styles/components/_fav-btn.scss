@@ -1,0 +1,15 @@
+@use '../abstracts' as *;
+
+.fav-btn {
+  width: 36px;
+  height: 36px;
+  color: var(--color-white);
+  background: var(--color-accent);
+
+  @include flex-center;
+  @include transition(background-color);
+
+  &:hover {
+    background: var(--color-accent-hover);
+  }
+}

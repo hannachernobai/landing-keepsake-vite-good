@@ -1,0 +1,36 @@
+@use '../abstracts' as *;
+
+.header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 100;
+  height: var(--header-h);
+  background: var(--color-white);
+  box-shadow: 0 1px 0 var(--color-border);
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
+}
+
+// Шапка стискається при скролі там, де підтримуються scroll-driven animations
+@supports (animation-timeline: scroll()) {
+  @include mq(md) {
+    @include motion-ok {
+      .header {
+        animation: header-shrink linear both;
+        animation-timeline: scroll(root);
+        animation-range: 0 120px;
+      }
+    }
+  }
+}
+
+@keyframes header-shrink {
+  to {
+    height: 64px;
+  }
+}

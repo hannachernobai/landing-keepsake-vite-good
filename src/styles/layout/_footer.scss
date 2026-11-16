@@ -1,0 +1,97 @@
+@use '../abstracts' as *;
+
+.footer {
+  padding-top: var(--space-48);
+  color: var(--color-muted);
+  background: var(--color-footer);
+
+  &__top {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-32);
+    padding-bottom: var(--space-40);
+  }
+
+  &__links {
+    display: flex;
+    gap: var(--space-40);
+    order: 2;
+  }
+
+  &__col {
+    flex: 1;
+  }
+
+  &__title {
+    margin-bottom: var(--space-14);
+    color: var(--color-white);
+
+    @include text(400, rem(15), 21px, var(--font-heading));
+    @include uppercase;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+
+  &__link {
+    @include transition(color);
+
+    &:hover {
+      color: var(--color-white);
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+    align-items: center;
+    padding-block: var(--space-24) var(--space-28);
+    border-top: 1px solid var(--color-footer-line);
+  }
+
+  &__copy {
+    order: 2;
+    font-size: rem(13);
+    line-height: 18px;
+  }
+
+  &__socials {
+    order: 1;
+  }
+
+  @include mq(md) {
+    padding-top: 64px;
+
+    &__top {
+      flex-direction: row;
+      gap: var(--space-40);
+      justify-content: space-between;
+    }
+
+    &__links {
+      flex: none;
+      order: 0;
+      gap: 60px;
+    }
+
+    &__col {
+      flex: none;
+      width: 160px;
+    }
+
+    &__bottom {
+      flex-direction: row;
+      justify-content: space-between;
+      padding-block: var(--space-24) var(--space-32);
+    }
+
+    &__copy,
+    &__socials {
+      order: 0;
+    }
+  }
+}

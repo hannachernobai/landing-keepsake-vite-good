@@ -1,0 +1,28 @@
+@use '../abstracts' as *;
+
+.service {
+  display: flex;
+  flex: 0 0 calc((100% - (var(--cols) - 1) * var(--gap-x)) / var(--cols));
+  flex-direction: column;
+  gap: var(--space-14);
+  align-items: center;
+  min-width: 0;
+  overflow-wrap: break-word;
+
+  &__icon {
+    flex: none;
+    width: var(--service-icon);
+    height: var(--service-icon);
+    background: var(--color-bg-light);
+    border-radius: 50%;
+
+    @include flex-center;
+  }
+
+  &__title {
+    color: var(--color-text-dark);
+
+    @include text(400, rem(17), 22px, var(--font-heading));
+    @include uppercase;
+  }
+}

@@ -1,0 +1,73 @@
+@use 'sass:list';
+@use 'sass:map';
+@use '../abstracts' as *;
+@use 'sass:list';
+@use '../abstracts' as *;
+
+// Типографічні «логотипи» клієнтів: id → (шрифт, насиченість, трекінг)
+$client-logos: (
+  'nordly': (
+    'heading',
+    700,
+    0,
+  ),
+  'halcyon': (
+    'logo',
+    700,
+    0,
+  ),
+  'arco': (
+    'heading',
+    300,
+    1px,
+  ),
+  'pinewood': (
+    'body',
+    700,
+    0,
+  ),
+  'vela': (
+    'body',
+    300,
+    3px,
+  ),
+  'ostra': (
+    'heading',
+    400,
+    0,
+  ),
+);
+
+.clients {
+  --cols: 2;
+
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: var(--space-14);
+
+  &__logo {
+    flex: 0 0 calc(100% / var(--cols));
+    min-height: 72px;
+    color: var(--color-logo);
+    font-size: rem(22);
+    line-height: 1;
+
+    @include flex-center;
+  }
+
+  @each $id, $style in $client-logos {
+    &__logo--#{$id} {
+      font-family: #{map.get($fonts, list.nth($style, 1))};
+      font-weight: list.nth($style, 2);
+      letter-spacing: list.nth($style, 3);
+    }
+  }
+
+  @include mq(md) {
+    --cols: 3;
+  }
+
+  @include mq(lg) {
+    --cols: 6;
+  }
+}

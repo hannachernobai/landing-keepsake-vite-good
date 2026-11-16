@@ -1,0 +1,29 @@
+@use '../abstracts' as *;
+
+.burger {
+  width: 40px;
+  height: 40px;
+  color: var(--color-text-dark);
+
+  @include flex-center;
+  @include button-reset;
+
+  &__close {
+    display: none;
+  }
+
+  @include mq(md) {
+    display: none;
+  }
+}
+
+// Відкрите меню: бургер перетворюється на хрестик (без JS)
+body:has(.mobile-menu:popover-open) {
+  .burger__open {
+    display: none;
+  }
+
+  .burger__close {
+    display: block;
+  }
+}

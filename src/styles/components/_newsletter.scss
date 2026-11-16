@@ -1,0 +1,128 @@
+@use '../abstracts' as *;
+
+.newsletter {
+  order: 1;
+
+  &__text {
+    margin-bottom: var(--space-14);
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-10);
+  }
+
+  &__input {
+    width: 100%;
+    min-height: 44px;
+    padding: var(--space-10) 15px;
+    color: var(--color-white);
+    background: transparent;
+    border: 1px solid var(--color-footer-line);
+    border-radius: 0;
+
+    @include text(400, rem(14), 19px);
+
+    &::placeholder {
+      color: var(--color-muted);
+    }
+
+    &:focus {
+      border-color: var(--color-teal);
+      outline: none;
+    }
+
+    &:user-invalid {
+      border-color: var(--color-accent);
+    }
+  }
+
+  &__error {
+    min-height: 16px;
+    margin: var(--space-6) 0;
+    font-size: rem(12);
+    line-height: 16px;
+    color: var(--color-accent);
+    visibility: hidden;
+  }
+
+  &__consent {
+    display: flex;
+    gap: var(--space-6);
+    align-items: center;
+    font-size: rem(12);
+    line-height: 16px;
+    cursor: pointer;
+  }
+
+  &__checkbox {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    accent-color: var(--color-accent);
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+  }
+
+  &__success {
+    display: none;
+    flex-direction: column;
+    gap: var(--space-10);
+
+    &:target {
+      display: flex;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__success-icon {
+    width: 40px;
+    height: 40px;
+    color: var(--color-footer);
+    background: var(--color-teal);
+    border-radius: 50%;
+
+    @include flex-center;
+  }
+
+  &__success-title {
+    font-weight: 700;
+    color: var(--color-white);
+  }
+
+  &__success-note {
+    font-size: rem(12);
+    line-height: 16px;
+  }
+
+  @include mq(md) {
+    flex: 1;
+    max-width: 420px;
+    order: 0;
+
+    &__row {
+      flex-direction: row;
+    }
+  }
+}
+
+// Стани форми (без JS): помилка валідації та успіх через :target
+.newsletter__row:has(.newsletter__input:user-invalid) ~ .newsletter__error {
+  visibility: visible;
+}
+
+.newsletter:has(.newsletter__success:target) .newsletter__form {
+  display: none;
+}

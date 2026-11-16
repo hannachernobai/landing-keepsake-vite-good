@@ -1,0 +1,37 @@
+@use '../abstracts' as *;
+
+.nav {
+  display: none;
+
+  &__list {
+    display: flex;
+    gap: var(--space-24);
+  }
+
+  &__link {
+    color: var(--color-text-dark);
+
+    @include text(400, var(--fs-ui), 19px, var(--font-heading));
+    @include uppercase;
+    @include transition(color);
+
+    &:hover,
+    &--active {
+      color: var(--color-accent);
+    }
+  }
+
+  @include mq(md) {
+    display: flex;
+    gap: var(--space-24);
+    align-items: center;
+  }
+
+  @include mq(lg) {
+    gap: var(--space-40);
+
+    &__list {
+      gap: var(--space-40);
+    }
+  }
+}

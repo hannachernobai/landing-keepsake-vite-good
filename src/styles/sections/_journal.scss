@@ -1,0 +1,23 @@
+@use '../abstracts' as *;
+
+.journal {
+  padding-bottom: var(--section-y);
+
+  &__posts {
+    --cols: 1;
+    --gap-x: var(--space-40);
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-28) var(--gap-x);
+    margin-top: var(--space-14);
+
+    @include mq(md) {
+      row-gap: var(--space-40);
+    }
+
+    @include mq(lg) {
+      --cols: 2;
+    }
+  }
+}

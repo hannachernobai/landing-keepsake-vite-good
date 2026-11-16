@@ -1,0 +1,70 @@
+@use '../abstracts' as *;
+
+.mobile-menu {
+  position: fixed;
+  inset: var(--header-h) 0 0;
+  width: 100%;
+  height: calc(100dvh - var(--header-h));
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+  color: var(--color-text-dark);
+  background: var(--color-white);
+  border: 0;
+
+  &__list {
+    padding: var(--space-12) var(--gutter);
+
+    li + li {
+      border-top: 1px solid var(--color-border);
+    }
+  }
+
+  &__link {
+    display: block;
+    padding: var(--space-16) 0;
+
+    @include text(300, rem(28), 36px, var(--font-heading));
+    @include uppercase;
+
+    &:hover,
+    &--active {
+      color: var(--color-accent);
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+    padding: var(--space-20) var(--gutter) var(--space-32);
+  }
+
+  &__contacts {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-10);
+    padding: var(--space-24) var(--gutter);
+    background: var(--color-bg-light);
+  }
+
+  &__label {
+    color: var(--color-muted);
+
+    @include text(400, rem(13), 18px, var(--font-heading));
+    @include uppercase;
+  }
+
+  &__contact:hover {
+    color: var(--color-accent);
+  }
+
+  &__socials {
+    margin-top: var(--space-8);
+  }
+
+  // Від планшета меню не потрібне, навіть якщо popover лишився відкритим
+  @include mq(md) {
+    display: none;
+  }
+}

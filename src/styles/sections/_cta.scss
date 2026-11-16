@@ -1,0 +1,18 @@
+@use '../abstracts' as *;
+
+.cta {
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-20);
+    align-items: center;
+    text-align: center;
+  }
+
+  &__title {
+    color: var(--color-text-dark);
+
+    @include text(300, var(--fs-cta), 1.3, var(--font-heading));
+    @include uppercase(3px);
+  }
+}

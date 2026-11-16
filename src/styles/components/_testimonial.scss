@@ -1,0 +1,84 @@
+@use '../abstracts' as *;
+
+.testimonial {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-14);
+  padding: var(--space-28) var(--space-24);
+  margin-top: var(--space-14);
+  background: var(--color-bg-light);
+
+  &__mark {
+    color: var(--color-accent);
+
+    @include text(400, rem(56), 36px, var(--font-heading));
+  }
+
+  &__text {
+    color: var(--color-text-dark);
+
+    @include text(300, var(--fs-quote), 1.6, var(--font-body));
+  }
+
+  &__author {
+    display: flex;
+    gap: var(--space-14);
+    align-items: center;
+    margin-top: var(--space-6);
+  }
+
+  &__avatar {
+    flex: none;
+    width: 48px;
+    height: 48px;
+    color: var(--color-white);
+    background: var(--color-text-dark);
+    border-radius: 50%;
+    letter-spacing: 1px;
+
+    @include flex-center;
+    @include text(400, rem(16), 1, var(--font-heading));
+  }
+
+  &__who {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__name {
+    color: var(--color-text-dark);
+
+    @include text(700, rem(14), 21px);
+  }
+
+  &__role {
+    color: var(--color-muted);
+    font-size: rem(13);
+    line-height: 18px;
+  }
+
+  &__dots {
+    display: flex;
+    gap: var(--space-8);
+    margin-left: auto;
+  }
+
+  &__dot {
+    width: 8px;
+    height: 8px;
+    background: var(--color-border);
+    border-radius: 50%;
+
+    &--active {
+      background: var(--color-accent);
+    }
+  }
+
+  @include mq(md) {
+    padding: 36px var(--space-40);
+  }
+
+  @include mq(lg) {
+    padding: var(--space-40) var(--space-48);
+  }
+}

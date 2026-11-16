@@ -1,0 +1,13 @@
+@use '../abstracts' as *;
+
+.stats {
+  --cols: 2;
+
+  display: flex;
+  flex-wrap: wrap;
+  border-block: 1px solid var(--color-border);
+
+  @include mq(md) {
+    --cols: 4;
+  }
+}
