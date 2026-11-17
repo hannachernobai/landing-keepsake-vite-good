@@ -1,8 +1,6 @@
 @use 'sass:list';
 @use 'sass:map';
 @use '../abstracts' as *;
-@use 'sass:list';
-@use '../abstracts' as *;
 
 // Типографічні «логотипи» клієнтів: id → (шрифт, насиченість, трекінг)
 $client-logos: (
