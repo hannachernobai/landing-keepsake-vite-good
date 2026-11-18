@@ -2,7 +2,7 @@
 
 Адаптивний односторінковий лендінг дизайн-агенції **Keepsake**. Той самий макет, що й у `landing-keepsake` (lab-07), але зібраний професійним фронтенд-процесом: Pug-шаблони, модульний SCSS, PostCSS, оптимізовані зображення та автоматичний контроль якості коду.
 
-- **Демо:** https://chernobaihanna.github.io/landing-keepsake-vite/
+- **Демо:** https://hannachernobai.github.io/landing-keepsake-vite-good/
 - **Макет:** [Keepsake — Responsive (Figma)](https://www.figma.com/design/ZMpmNEBMsLPHJF7GyoHu2f/Keepsake-%E2%80%94-Responsive)
 
 ## Вимоги до середовища
@@ -15,7 +15,7 @@
 | Команда               | Що робить                                                          |
 | --------------------- | ------------------------------------------------------------------ |
 | `npm install`         | встановлює залежності та підключає git hooks (скрипт `prepare`)    |
-| `npm run dev`         | dev-сервер Vite (http://localhost:5173/landing-keepsake-vite/)     |
+| `npm run dev`         | dev-сервер Vite (http://localhost:5173/)                           |
 | `npm run build`       | продакшн-збірка у `dist/`                                          |
 | `npm run preview`     | локальний перегляд збірки                                          |
 | `npm run images`      | генерує AVIF/WebP/JPEG у кількох ширинах з `images-src/` (`sharp`) |
@@ -27,7 +27,7 @@
 ## Структура проєкту
 
 ```text
-landing-keepsake-vite/
+landing-keepsake-vite-good/
 ├── .github/workflows/deploy.yml   # збірка й публікація на GitHub Pages
 ├── .husky/                        # pre-commit (lint-staged), commit-msg (commitlint)
 ├── .vscode/extensions.json        # рекомендовані розширення редактора
@@ -116,4 +116,16 @@ CSS:
 
 ## Публікація
 
-Збірка й деплой виконуються workflow `.github/workflows/deploy.yml` при push у `main`. У `vite.config.js` задано `base: '/landing-keepsake-vite/'`, інакше стилі й зображення не завантажаться на GitHub Pages. У репозиторії: **Settings → Pages → Source: GitHub Actions**.
+Сайт опубліковано на GitHub Pages: https://hannachernobai.github.io/landing-keepsake-vite-good/
+
+Збірку й публікацію виконує workflow `.github/workflows/deploy.yml` при кожному push у `main`: `npm ci` → `npm run lint` → `npm run build` → деплой папки `dist/`. Папка `dist` у репозиторій не комітиться.
+
+Налаштування в репозиторії: **Settings → Pages → Source: GitHub Actions**.
+
+### Параметр `base`
+
+Сайт лежить у підпапці `/landing-keepsake-vite-good/`, тому під час збірки в GitHub Actions `vite.config.js` виставляє `base` за назвою репозиторію (змінна `GITHUB_REPOSITORY`). Без цього браузер шукав би стилі й зображення в корені `github.io` і не знайшов би їх. Локально (`dev`, `build`, `preview`) змінної немає, тому `base` дорівнює `/` і сайт працює з кореня.
+
+### Особливості збірки
+
+Плагін vituum зберігає зібрану сторінку як `dist/index.pug.html`. Невеликий власний плагін у `vite.config.js` перейменовує її на `index.html`, інакше сервер і GitHub Pages не знайдуть головну сторінку.
