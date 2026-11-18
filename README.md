@@ -17,7 +17,7 @@
 | `npm install`         | встановлює залежності та підключає git hooks (скрипт `prepare`)    |
 | `npm run dev`         | dev-сервер Vite (http://localhost:5173/)                           |
 | `npm run build`       | продакшн-збірка у `dist/`                                          |
-| `npm run preview`     | локальний перегляд збірки                                          |
+| `npm run preview`     | локальний перегляд збірки (http://localhost:4173/)                 |
 | `npm run images`      | генерує AVIF/WebP/JPEG у кількох ширинах з `images-src/` (`sharp`) |
 | `npm run format`      | форматує код Prettier                                              |
 | `npm run lint`        | Stylelint для `.scss` + `prettier --check`                         |
@@ -109,10 +109,10 @@ CSS мініфікується самим Vite під час `npm run build` (es
 
 CSS:
 
-| Етап                                      | Розмір, байт                    |
-| ----------------------------------------- | ------------------------------- |
-| lab-07 (`reset.css` + `style.css`)        | 24 291                          |
-| `dist/assets/*.css` після `npm run build` | _заповнити після першої збірки_ |
+| Етап                                      | Розмір, байт            |
+| ----------------------------------------- | ----------------------- |
+| lab-07 (`reset.css` + `style.css`)        | 24 291                  |
+| `dist/assets/*.css` після `npm run build` | ≈ 23 780 (gzip ≈ 4 590) |
 
 ## Публікація
 
